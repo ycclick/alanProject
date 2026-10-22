@@ -1,0 +1,793 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.DocExampleCode.Editor.Tests.csproj": {}
+  },
+  "projects": {
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj",
+        "projectName": "Unity.Addressables",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.Addressables\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.DocExampleCode.Editor.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.DocExampleCode.Editor.Tests.csproj",
+        "projectName": "Unity.Addressables.DocExampleCode.Editor.Tests",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.DocExampleCode.Editor.Tests.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.Addressables.DocExampleCode.Editor.Tests\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.Editor.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.Editor.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.Editor.csproj",
+        "projectName": "Unity.Addressables.Editor",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.Editor.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.Addressables.Editor\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Addressables.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.Profiling.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.Profiling.Core.csproj",
+        "projectName": "Unity.Profiling.Core",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Profiling.Core.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.Profiling.Core\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj",
+        "projectName": "Unity.ResourceManager",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ResourceManager.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.ResourceManager\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.Profiling.Core.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.Profiling.Core.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj",
+        "projectName": "Unity.ScriptableBuildPipeline",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.ScriptableBuildPipeline\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj",
+        "projectName": "Unity.ScriptableBuildPipeline.Editor",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.Editor.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\Unity.ScriptableBuildPipeline.Editor\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\Unity.ScriptableBuildPipeline.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj",
+        "projectName": "UnityEditor.TestRunner",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\UnityEditor.TestRunner\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj",
+        "projectName": "UnityEditor.UI",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.UI.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\UnityEditor.UI\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEditor.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj"
+              },
+              "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+                "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj",
+        "projectName": "UnityEngine.TestRunner",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.TestRunner.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\UnityEngine.TestRunner\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj",
+        "projectName": "UnityEngine.UI",
+        "projectPath": "E:\\AlanToolEditProject\\AlanProject\\UnityEngine.UI.csproj",
+        "packagesPath": "C:\\Users\\ethan\\.nuget\\packages\\",
+        "outputPath": "E:\\AlanToolEditProject\\AlanProject\\Temp\\obj\\UnityEngine.UI\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\ethan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "framework": "netstandard2.1",
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "framework": "netstandard2.1",
+          "targetAlias": "netstandard2.1",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
