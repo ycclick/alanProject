@@ -5,17 +5,29 @@ namespace Project
 {
     public class UIComponent : MonoBehaviour
     {
+        public class UIBar
+        {
+            public UIBar(string name, Image image, Image imageBack, int value, int bar)
+            {
+                barName = name;
+                barImage = image;
+                barImageBack = imageBack;
+                barValue = value;
+                this.bar = bar;
+            }
+            public string barName;
+            private Image barImage;
+            /// <summary>
+            /// bar底圖
+            /// </summary>
+            private Image barImageBack;
 
-        private Image barImage;
-        /// <summary>
-        /// bar底圖
-        /// </summary>
-        private Image barImageBack;
+            [SerializeField]
+            private int barValue;
+            [SerializeField]
+            private int bar;
+        }
 
-        [SerializeField]
-        private int barValue;
-        [SerializeField]
-        private int bar;
         private void Awake()
         {
             

@@ -67,3 +67,10 @@
 /UnityEngine.TestRunner.csproj
 /UnityEngine.UI.csproj
 /Temp
+/Unity.Addressables.DocExampleCode.Editor.Tests.csproj
+/Unity.Addressables.Editor.csproj
+/Unity.Addressables.csproj
+/Unity.Profiling.Core.csproj
+/Unity.ResourceManager.csproj
+/Unity.ScriptableBuildPipeline.Editor.csproj
+/Unity.ScriptableBuildPipeline.csproj
