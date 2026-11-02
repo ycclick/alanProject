@@ -405,6 +405,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5622417480785098596}
+  - component: {fileID: 1637709888381309399}
   m_Layer: 5
   m_Name: UIComponent
   m_TagString: Untagged
@@ -431,3 +432,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1637709888381309399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562387180207155354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76a70c89fb1a73a4cbd0bc65897c7728, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.UIComponent
+  barList:
+  - barName: hp
+    barImage: {fileID: 21300000, guid: 522104c734d604b46a150adf42a3ad53, type: 3}
+    barImageBack: {fileID: 21300000, guid: b3f82f6787177f74993c031fa41026a3, type: 3}
+    nowBar: 0
+    maxBar: 1800
+    rectTransform: {fileID: 0}
+  uiObj: {fileID: 3095649541303434571}
