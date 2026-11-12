@@ -39,6 +39,8 @@ namespace Project
             public Quaternion localRotation;
             public Vector3 scale;
 
+            public float width;
+            public float height;
         }
         [Serializable]
         public class UIBar
@@ -50,8 +52,16 @@ namespace Project
                 barImageBack = imageBack;
                 maxBar = value;
                 this.nowBar = bar;
+                rectTransform = new RectTransformData();
+                rectTransform.width = 100;
+                rectTransform.height = 100;
+                rectTransform.anchors = new Anchors();
                 rectTransform.anchors.preset = AnchorPreset.Custom;
+                rectTransform.anchors.Min = new Vector2(0.5f, 0.5f);
+                rectTransform.anchors.Max = new Vector2(0.5f, 0.5f);
+
             }
+            public GameObject uibarObject;
             public string barName;
             [SerializeField]
             public Sprite barImage;
@@ -66,7 +76,7 @@ namespace Project
             [SerializeField]
             private int maxBar;
             [SerializeField]
-            public RectTransformData rectTransform;
+            public RectTransformData rectTransform = new RectTransformData();
         }
         [SerializeField]
         private List<UIBar> barList = new List<UIBar>();
@@ -82,67 +92,37 @@ namespace Project
         {
             foreach (var bar in barList)
             {
-                GameObject barObj = new GameObject(bar.barName);
-                barObj.transform.SetParent(uiObj.transform);
-                Image barImage = barObj.AddComponent<Image>();
+                if (bar.uibarObject != null)
+                {
+
+
+                    return;
+                }
+                bar.uibarObject = new GameObject(bar.barName);
+                bar.uibarObject.transform.SetParent(uiObj.transform);
+                Image barImage = bar.uibarObject.AddComponent<Image>();
                 barImage.sprite = bar.barImage;
-                RectTransform rectTransform = barObj.GetComponent<RectTransform>();
-                rectTransform.sizeDelta = new Vector2(100, 20); // Set the size of the bar
-                rectTransform.anchoredPosition = new Vector2(0, 0); // Set the position of the bar
+                RectTransform rectTransform = bar.uibarObject.GetComponent<RectTransform>();
+                rectTransform.localPosition = Vector3.zero;
+                rectTransform.anchorMax = bar.rectTransform.anchors.Max;
+                rectTransform.anchorMin = bar.rectTransform.anchors.Min;
+                rectTransform.sizeDelta = new Vector2(bar.rectTransform.width, bar.rectTransform.height);
+              
                 //bar.rectTransform = rectTransform;
             }
         }
-
-        public void AnchorPresetEditor(AnchorPreset preset, RectTransform rectTransform)
+        public void ClearObjects()
         {
-            switch (preset)
+            foreach (var bar in barList)
             {
-                case AnchorPreset.TopLeft:
-                    rectTransform.anchorMin = new Vector2(0, 1);
-                    rectTransform.anchorMax = new Vector2(0, 1);
-                    break;
-                case AnchorPreset.Top:
-                    rectTransform.anchorMin = new Vector2(0.5f, 1);
-                    rectTransform.anchorMax = new Vector2(0.5f, 1);
-                    break;
-                case AnchorPreset.TopRight:
-                    rectTransform.anchorMin = new Vector2(1, 1);
-                    rectTransform.anchorMax = new Vector2(1, 1);
-                    break;
-                case AnchorPreset.Left:
-                    rectTransform.anchorMin = new Vector2(0, 0.5f);
-                    rectTransform.anchorMax = new Vector2(0, 0.5f);
-                    break;
-                case AnchorPreset.Center:
-                    rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-                    rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                    break;
-                case AnchorPreset.Right:
-                    rectTransform.anchorMin = new Vector2(1, 0.5f);
-                    rectTransform.anchorMax = new Vector2(1, 0.5f);
-                    break;
-                case AnchorPreset.BottomLeft:
-                    rectTransform.anchorMin = new Vector2(0, 0);
-                    rectTransform.anchorMax = new Vector2(0, 0);
-                    break;
-                case AnchorPreset.Bottom:
-                    rectTransform.anchorMin = new Vector2(0.5f, 0);
-                    rectTransform.anchorMax = new Vector2(0.5f, 0);
-                    break;
-                case AnchorPreset.BottomRight:
-                    rectTransform.anchorMin = new Vector2(1, 0);
-                    rectTransform.anchorMax = new Vector2(1, 0);
-                    break;
-                case AnchorPreset.StretchHorizontal:
-                    rectTransform.anchorMin = new Vector2(0, 0.5f);
-                    rectTransform.anchorMax = new Vector2(1, 0.5f);
-                    break;
-                case AnchorPreset.StretchVertical:
-                    rectTransform.anchorMin = new Vector2(0.5f, 0);
-                    rectTransform.anchorMax = new Vector2(0.5f, 1);
-                    break;
+                if (bar.uibarObject != null)
+                {
+                    DestroyImmediate(bar.uibarObject);
+                    bar.uibarObject = null;
+                }
             }
         }
+
     }
 }
 
