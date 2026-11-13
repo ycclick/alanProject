@@ -1,8 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class CheckGitformLogWindow : EditorWindow
@@ -10,53 +10,29 @@ public class CheckGitformLogWindow : EditorWindow
     [SerializeField]
     public bool isCreateWindow;
     [SerializeField]
-    private UnityEngine.Object selectedAsset;
-    //[SerializeField]
-    private Type asset;
+    private List<UnityEngine.Object> selectedAssets = new List<UnityEngine.Object>();
     //跟目錄路徑
     private static string projectPath = Directory.GetParent(Application.dataPath).FullName;
     private static string gitStatusShort = "status --short";
     private static string gitBranch = "branch -a";
     private static string gitName = "git";
     private static string windowCMDName = "cmd.exe";
-    private static string cmdKeepOpenOption = $"/k";
+    private static string cmdKeepOpenOption = "/k";
 
     [MenuItem("Tools/Git/CheckGit")]
     private static void Open()
     {
-        //index = 0;
+        // MenuItem 被點擊時只開啟工具視窗；Git 指令由下方按鈕觸發。
         GetWindow<CheckGitformLogWindow>("CheckGit");
-        var info = new ProcessStartInfo
-        {
-            FileName = "git",
-            Arguments = "status --short",
-            WorkingDirectory = projectPath,
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            CreateNoWindow = true
-        };
-
-        // 使用上面的設定啟動 Git 外部程序。
-        // Process.Start(info) 會執行：git status --short。
-        using (Process process = Process.Start(info))
-        {
-            // 讀取 Git 從標準輸出回傳的文字內容。
-            // 例如：修改過的檔案或尚未追蹤的新檔案。
-            string result = process.StandardOutput.ReadToEnd();
-
-            // 等待 Git 程序執行完成，確保 ExitCode 已經可以取得。
-            process.WaitForExit();
-
-            // 將 Git 的執行結果與輸出內容寫入 Unity Console。
-            // ExitCode 為 0 通常代表指令執行成功。
-            UnityEngine.Debug.Log(
-                $"Git exit code: {process.ExitCode}\n{result}");
-        }
-        // using 區塊結束後會自動釋放 Process 使用的資源。
     }
 
     private void OnGUI()
     {
+        // Unity 重新載入編輯器腳本後，保險確認清單仍然存在。
+        if (selectedAssets == null)
+        {
+            selectedAssets = new List<UnityEngine.Object>();
+        }
 
         //isCerateWindow = EditorGUILayout.Foldout("isCerateWindow", isCerateWindow);
 
@@ -69,24 +45,33 @@ public class CheckGitformLogWindow : EditorWindow
         // 按下按鈕後，才將選取素材的資料輸出到 Unity Console。
         GUIButtonAction("InputObjectData", () => 
         {
-            asset = selectedAsset?.GetType();
+
             // 沒有選取素材時，不繼續執行後面的資料讀取。
-            if (selectedAsset == null)
+            if (selectedAssets.Count == 0)
             {
                 UnityEngine.Debug.LogWarning("尚未選取素材。");
                 return;
             }
             // 取得素材在 Unity 專案中的相對路徑，例如 Assets/Images/Icon.png。
-            string assetPath = AssetDatabase.GetAssetPath(selectedAsset);
+            foreach (var assetData in selectedAssets)
+            {
+                // ObjectField 被清空後可能留下 null，因此先略過空項目。
+                if (assetData == null)
+                {
+                    continue;
+                }
 
-            // 將素材名稱與專案路徑輸出到 Unity Console。
-            UnityEngine.Debug.Log(
-                $"素材名稱：{selectedAsset.name}\n素材路徑：{assetPath}\n素材類別:{asset}");
+                string assetPath = AssetDatabase.GetAssetPath(assetData);
+                // GetType().Name 取得實際 Unity 類型，例如 Texture2D、Prefab 或 MonoScript。
+                UnityEngine.Debug.Log(
+                    $"素材名稱：{assetData.name}\n素材路徑：{assetPath}\n素材類別：{assetData.GetType().Name}");
+            }   
+
         });
         GUIButtonAction("CheckGitStatus", () => ProcessGit(gitStatusShort, isCreateWindow, !isCreateWindow, !isCreateWindow));
         GUIButtonAction("CheckGitBranch", () => ProcessGit(gitBranch, isCreateWindow, !isCreateWindow, !isCreateWindow));
-        GUIButtonAction("CheckGitBranch", () => ProcessGit(gitBranch, isCreateWindow, !isCreateWindow, !isCreateWindow));
-        //GUIButtonAction("CheckGitBranch", () => ProcessGit(gitBranch, true, false, false));
+        GUIButtonAction("DeleteDateAll", () => selectedAssets.Clear());
+       
     }
 
     private void ProcessGit(string arguments,bool useShellExecute,bool redirectStandardOutput,bool createNoWindow) 
@@ -112,15 +97,9 @@ public class CheckGitformLogWindow : EditorWindow
                 // 不另外開啟命令提示字元視窗。
                 CreateNoWindow = createNoWindow
             };
-            using (Process process = Process.Start(info))
-            {
-                // 讀取 Git 從標準輸出回傳的文字內容。
-                //string result = process.StandardOutput.ReadToEnd();
-                // 等待 Git 程序執行完成，確保 ExitCode 已經可以取得。
-                process.WaitForExit();
-                // 將 Git 的執行結果與輸出內容寫入 Unity Console。
-                //UnityEngine.Debug.Log($"Git exit code: {process.ExitCode}\n{result}");
-            }
+            // /k 會讓 cmd.exe 保持開啟；不能使用 using 或 WaitForExit，
+            // 否則 Unity 會等待使用者關閉黑色命令提示字元視窗。
+            Process.Start(info);
         }
         else 
         {
@@ -162,7 +141,87 @@ public class CheckGitformLogWindow : EditorWindow
         // 顯示素材選取欄位，使用者可以將 Project 視窗中的素材拖曳到這裡。
         // typeof(UnityEngine.Object) 代表目前允許選取任何 Unity 素材類型。
         // false 代表不允許拖曳場景中的 GameObject，只接受 Project 素材。
-        selectedAsset = EditorGUILayout.ObjectField("素材", selectedAsset, typeof(UnityEngine.Object), false);
+        //selectedAssets.Add(EditorGUILayout.ObjectField("素材", selectedAssets[0], typeof(UnityEngine.Object), false));
+        EditorGUILayout.LabelField(
+        "將多個素材拖曳到這裡",
+        EditorStyles.boldLabel);
+
+        // GUILayoutUtility.GetRect 依照目前視窗寬度配置一個 60 像素高的矩形，
+        // 這個矩形就是拖曳素材的有效區域。
+        Rect dropArea = GUILayoutUtility.GetRect(
+            0,
+            60,
+            GUILayout.ExpandWidth(true));
+
+        // GUI.Box 只負責繪製可視化框線與提示文字，不會自動接收拖曳資料。
+        GUI.Box(
+            dropArea,
+            "拖曳多個素材到這個區域");
+
+        // Event.current 取得目前這一次 OnGUI 正在處理的滑鼠/拖曳事件。
+        Event currentEvent = Event.current;
+
+        // DragUpdated：素材正在拖曳經過區域。
+        // DragPerform：使用者在區域內放開滑鼠，準備正式加入素材。
+        if ((currentEvent.type == EventType.DragUpdated ||
+             currentEvent.type == EventType.DragPerform) &&
+            dropArea.Contains(currentEvent.mousePosition))
+        {
+            // Copy 讓 Unity 顯示「可以複製/加入」的拖曳游標。
+            DragAndDrop.visualMode =
+                DragAndDropVisualMode.Copy;
+
+            if (currentEvent.type == EventType.DragPerform)
+            {
+                // AcceptDrag 通知 Unity 已接受這次拖曳，之後才能安全讀取拖曳物件。
+                DragAndDrop.AcceptDrag();
+
+                // objectReferences 是這次拖曳進來的所有 Unity 物件，支援一次多個素材。
+                foreach (UnityEngine.Object draggedAsset
+                         in DragAndDrop.objectReferences)
+                {
+                    if (draggedAsset == null)
+                    {
+                        continue;
+                    }
+
+                    // 只接受 Project 視窗中的素材。
+                    if (!AssetDatabase.Contains(draggedAsset))
+                    {
+                        continue;
+                    }
+
+                    // List.Contains 判斷清單中是否已存在相同物件，避免重複加入。
+                    if (selectedAssets.Contains(draggedAsset))
+                    {
+                        continue;
+                    }
+
+                    selectedAssets.Add(draggedAsset);
+                }
+
+                // GUI.changed 告訴 Unity 這次 GUI 有資料變更，需要重新繪製視窗。
+                GUI.changed = true;
+            }
+
+            // Use 會標記事件已處理，避免同一個拖曳事件繼續被其他控制項使用。
+            currentEvent.Use();
+        }
+
+        EditorGUILayout.Space(10);
+
+
+        // ObjectField 讓使用者可以檢視或替換清單中的單一素材。
+        // 不額外加入 null，避免按下輸出按鈕時出現空項目。
+        for (int i = 0; i < selectedAssets.Count; i++)
+        {
+            selectedAssets[i] = EditorGUILayout.ObjectField(
+                $"素材 {i + 1}",
+                selectedAssets[i],
+                typeof(UnityEngine.Object),
+                false);
+        }
+
         isCreateWindow = EditorGUILayout.Toggle("建立視窗", isCreateWindow);
 
 
