@@ -9,8 +9,12 @@ public class CheckGitformLogWindow : EditorWindow
 {
     [SerializeField]
     public bool isCreateWindow;
-    [SerializeField]
+
+    //private List<UnityEngine.Object> _selectedAssets = new List<UnityEngine.Object>();
+
     private List<UnityEngine.Object> selectedAssets = new List<UnityEngine.Object>();
+    [SerializeField]
+    private List<Type> assetsType = new List<Type>();
     //跟目錄路徑
     private static string projectPath = Directory.GetParent(Application.dataPath).FullName;
     private static string gitStatusShort = "status --short";
@@ -70,8 +74,6 @@ public class CheckGitformLogWindow : EditorWindow
         });
         GUIButtonAction("CheckGitStatus", () => ProcessGit(gitStatusShort, isCreateWindow, !isCreateWindow, !isCreateWindow));
         GUIButtonAction("CheckGitBranch", () => ProcessGit(gitBranch, isCreateWindow, !isCreateWindow, !isCreateWindow));
-        GUIButtonAction("DeleteDateAll", () => selectedAssets.Clear());
-       
     }
 
     private void ProcessGit(string arguments,bool useShellExecute,bool redirectStandardOutput,bool createNoWindow) 
@@ -210,20 +212,52 @@ public class CheckGitformLogWindow : EditorWindow
 
         EditorGUILayout.Space(10);
 
+        // 將 + 與 - 按鈕放在所有參考列下方，並排顯示。
+        EditorGUILayout.BeginHorizontal();
+        GUILayout.FlexibleSpace();
+
+        // +：新增一筆值為 null 的資料。
+        if (GUILayout.Button("+", GUILayout.Width(30)))
+        {
+            selectedAssets.Add(null);
+        }
+
+        // -：刪除清單最末位的資料。
+        if (GUILayout.Button("-", GUILayout.Width(30)))
+        {
+            if (selectedAssets.Count > 0)
+            {
+                selectedAssets.RemoveAt(selectedAssets.Count - 1);
+            }
+        }
+        GUIButtonAction("Delete All", () => selectedAssets.Clear());
+        GUILayout.FlexibleSpace();
+        EditorGUILayout.EndHorizontal();
 
         // ObjectField 讓使用者可以檢視或替換清單中的單一素材。
         // 不額外加入 null，避免按下輸出按鈕時出現空項目。
+        //檢查selectedAssets 欄位是否異動
+        EditorGUI.BeginChangeCheck();
         for (int i = 0; i < selectedAssets.Count; i++)
         {
+            if (selectedAssets[i] != null && !assetsType.Contains(selectedAssets[i].GetType()))
+            {
+                assetsType.Add(selectedAssets[i].GetType());
+            }
+            var asseTypeName = selectedAssets[i] == null ? "NullObject" : selectedAssets[i].GetType().Name;
             selectedAssets[i] = EditorGUILayout.ObjectField(
-                $"素材 {i + 1}",
+                $"{asseTypeName} {i + 1}",
                 selectedAssets[i],
                 typeof(UnityEngine.Object),
                 false);
+
+        }
+        if (EditorGUI.EndChangeCheck())
+        {
+
         }
 
         isCreateWindow = EditorGUILayout.Toggle("建立視窗", isCreateWindow);
-
 
     }
     private bool GUICreateButton(string buttonName, Action act = null) 
