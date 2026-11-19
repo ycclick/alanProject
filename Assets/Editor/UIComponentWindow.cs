@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -128,8 +129,6 @@ public class CheckGitformLogWindow : EditorWindow
             {
                 // 讀取 Git 從標準輸出回傳的文字內容。
                 string result = process.StandardOutput.ReadToEnd();
-                // 等待 Git 程序執行完成，確保 ExitCode 已經可以取得。
-                process.WaitForExit();
                 // 將 Git 的執行結果與輸出內容寫入 Unity Console。
                 UnityEngine.Debug.Log(
                     $"Git exit code: {process.ExitCode}\n{result}");
@@ -140,79 +139,9 @@ public class CheckGitformLogWindow : EditorWindow
     private void DrawGUI() 
     {
 
-        // 顯示素材選取欄位，使用者可以將 Project 視窗中的素材拖曳到這裡。
-        // typeof(UnityEngine.Object) 代表目前允許選取任何 Unity 素材類型。
-        // false 代表不允許拖曳場景中的 GameObject，只接受 Project 素材。
-        //selectedAssets.Add(EditorGUILayout.ObjectField("素材", selectedAssets[0], typeof(UnityEngine.Object), false));
-        EditorGUILayout.LabelField(
-        "將多個素材拖曳到這裡",
-        EditorStyles.boldLabel);
-
-        // GUILayoutUtility.GetRect 依照目前視窗寬度配置一個 60 像素高的矩形，
-        // 這個矩形就是拖曳素材的有效區域。
-        Rect dropArea = GUILayoutUtility.GetRect(
-            0,
-            60,
-            GUILayout.ExpandWidth(true));
-
-        // GUI.Box 只負責繪製可視化框線與提示文字，不會自動接收拖曳資料。
-        GUI.Box(
-            dropArea,
-            "拖曳多個素材到這個區域");
-
-        // Event.current 取得目前這一次 OnGUI 正在處理的滑鼠/拖曳事件。
-        Event currentEvent = Event.current;
-
-        // DragUpdated：素材正在拖曳經過區域。
-        // DragPerform：使用者在區域內放開滑鼠，準備正式加入素材。
-        if ((currentEvent.type == EventType.DragUpdated ||
-             currentEvent.type == EventType.DragPerform) &&
-            dropArea.Contains(currentEvent.mousePosition))
-        {
-            // Copy 讓 Unity 顯示「可以複製/加入」的拖曳游標。
-            DragAndDrop.visualMode =
-                DragAndDropVisualMode.Copy;
-
-            if (currentEvent.type == EventType.DragPerform)
-            {
-                // AcceptDrag 通知 Unity 已接受這次拖曳，之後才能安全讀取拖曳物件。
-                DragAndDrop.AcceptDrag();
-
-                // objectReferences 是這次拖曳進來的所有 Unity 物件，支援一次多個素材。
-                foreach (UnityEngine.Object draggedAsset
-                         in DragAndDrop.objectReferences)
-                {
-                    if (draggedAsset == null)
-                    {
-                        continue;
-                    }
-
-                    // 只接受 Project 視窗中的素材。
-                    if (!AssetDatabase.Contains(draggedAsset))
-                    {
-                        continue;
-                    }
-
-                    // List.Contains 判斷清單中是否已存在相同物件，避免重複加入。
-                    if (selectedAssets.Contains(draggedAsset))
-                    {
-                        continue;
-                    }
-
-                    selectedAssets.Add(draggedAsset);
-                }
-
-                // GUI.changed 告訴 Unity 這次 GUI 有資料變更，需要重新繪製視窗。
-                GUI.changed = true;
-            }
-
-            // Use 會標記事件已處理，避免同一個拖曳事件繼續被其他控制項使用。
-            currentEvent.Use();
-        }
-
         EditorGUILayout.Space(10);
 
-        // 將 + 與 - 按鈕放在所有參考列下方，並排顯示。
+        // 所有清單操作按鈕都放在參考欄位上方。
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
 
@@ -230,35 +159,78 @@ public class CheckGitformLogWindow : EditorWindow
                 selectedAssets.RemoveAt(selectedAssets.Count - 1);
             }
         }
-        GUIButtonAction("Delete All", () => selectedAssets.Clear());
+
         GUILayout.FlexibleSpace();
         EditorGUILayout.EndHorizontal();
+
+        GUIButtonAction("Delete All", () => selectedAssets.Clear());
+        GUIButtonAction("Refresh", RefreshSelectedAssets);
 
         // ObjectField 讓使用者可以檢視或替換清單中的單一素材。
         // 不額外加入 null，避免按下輸出按鈕時出現空項目。
         //檢查selectedAssets 欄位是否異動
         EditorGUI.BeginChangeCheck();
+        // 每個欄位個別檢查，才能同時知道變更的是哪一列。
         for (int i = 0; i < selectedAssets.Count; i++)
         {
-            if (selectedAssets[i] != null && !assetsType.Contains(selectedAssets[i].GetType()))
+            // 在繪製 ObjectField 前保存目前事件與拖曳物件。
+            Event currentEvent = Event.current;
+            bool isDragPerform = currentEvent.type == EventType.DragPerform;
+            List<UnityEngine.Object> draggedObjects = isDragPerform ? DragAndDrop.objectReferences.ToList() : null;
+
+            string assetTypeName = selectedAssets[i] == null ? "NullObject": selectedAssets[i].GetType().Name;
+
+            EditorGUI.BeginChangeCheck();
+            UnityEngine.Object newAsset = EditorGUILayout.ObjectField($"{assetTypeName} {i + 1}", selectedAssets[i] , typeof(UnityEngine.Object) , false);
+
+            if (EditorGUI.EndChangeCheck())
             {
-                assetsType.Add(selectedAssets[i].GetType());
+                // newAsset 是這一列 ObjectField 變更後的值。
+                selectedAssets[i] = newAsset;
+                draggedObjects.Remove(newAsset);
+                selectedAssets.AddRange(draggedObjects);
+                if (isDragPerform && draggedObjects != null)
+                {
+                    UnityEngine.Debug.Log(
+                        $"第 {i + 1} 列被拖曳填入，當下拖曳 {draggedObjects.Count} 個 Object：");
+
+                    foreach (UnityEngine.Object draggedObject in draggedObjects)
+                    {
+                        if (draggedObject != null)
+                        {
+                            UnityEngine.Debug.Log(
+                                $"- {draggedObject.name} ({draggedObject.GetType().Name})");
+                        }
+                    }
+                }
+                else if (newAsset != null)
+                {
+                    UnityEngine.Debug.Log($"第 {i + 1} 列已變更為：{newAsset.name}");
+                }
+                else
+                {
+                    UnityEngine.Debug.Log($"第 {i + 1} 列已清空。");
+                }
             }
-            var asseTypeName = selectedAssets[i] == null ? "NullObject" : selectedAssets[i].GetType().Name;
-            selectedAssets[i] = EditorGUILayout.ObjectField(
-                $"{asseTypeName} {i + 1}",
-                selectedAssets[i],
-                typeof(UnityEngine.Object),
-                false);
-
-        }
-        if (EditorGUI.EndChangeCheck())
-        {
-
         }
 
         isCreateWindow = EditorGUILayout.Toggle("建立視窗", isCreateWindow);
 
+    }
+    private void RefreshSelectedAssets()
+    {
+        // 直接從目前清單分組，不依賴 assetsType。
+        // assetsType 沒有同步更新時，排序結果會是空的；接著 Clear() 就會讓所有物件消失。
+        List<UnityEngine.Object> sortedAssets = selectedAssets
+            .Where(asset => asset != null)
+            .GroupBy(asset => asset.GetType())
+            .OrderByDescending(group => group.Count())
+            .SelectMany(group => group)
+            .ToList();
+
+        // 不把 null 加回清單；按下 Refresh 後，空欄位會被清除。
+        selectedAssets.Clear();
+        selectedAssets.AddRange(sortedAssets);
     }
     private bool GUICreateButton(string buttonName, Action act = null) 
     {
