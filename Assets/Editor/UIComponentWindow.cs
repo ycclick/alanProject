@@ -12,7 +12,7 @@ public class CheckGitformLogWindow : EditorWindow
     public bool isCreateWindow;
 
     //private List<UnityEngine.Object> _selectedAssets = new List<UnityEngine.Object>();
-
+    private UnityEngine.Object newSelectedObject = new UnityEngine.Object();
     private List<UnityEngine.Object> selectedAssets = new List<UnityEngine.Object>();
     [SerializeField]
     private List<Type> assetsType = new List<Type>();
@@ -144,11 +144,13 @@ public class CheckGitformLogWindow : EditorWindow
         // 所有清單操作按鈕都放在參考欄位上方。
         EditorGUILayout.BeginHorizontal();
         GUILayout.FlexibleSpace();
-
+        UnityEngine.Object newObject = EditorGUILayout.ObjectField("NewObject",newSelectedObject,typeof(UnityEngine.Object),false,GUILayout.Width(480));
+        newSelectedObject = newObject;
         // +：新增一筆值為 null 的資料。
         if (GUILayout.Button("+", GUILayout.Width(30)))
         {
-            selectedAssets.Add(null);
+            selectedAssets.Add(newSelectedObject);
+            newSelectedObject = null;
         }
 
         // -：刪除清單最末位的資料。
